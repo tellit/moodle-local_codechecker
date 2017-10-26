@@ -35,12 +35,6 @@ class moodle_Sniffs_PHP_IncludingFileSniff implements PHP_CodeSniffer_Sniff {
     public function process(PHP_CodeSniffer_File $file, $stackptr) {
         $tokens = $file->getTokens();
 
-        if ($tokens[$stackptr + 1]['code'] !== T_OPEN_PARENTHESIS) {
-            $error = '"%s" must be immediately followed by an open parenthesis';
-            $data  = array($tokens[$stackptr]['content']);
-            $file->addError($error, $stackptr, 'BracketsNotRequired', $data);
-        }
-
         $incondition = (count($tokens[$stackptr]['conditions']) !== 0) ? true : false;
 
         // Check to see if this including statement is within the parenthesis
